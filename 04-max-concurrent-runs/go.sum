@@ -1,11 +1,7 @@
 github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/mustafaturan/shift v0.1.0 h1:pPd+xg/le5ilSVe+LU0BZgHqZFkNEdOZYkwCMPXscL0=
-github.com/mustafaturan/shift v0.1.0/go.mod h1:+Zd+NME5xX6szLCM1qFjRkDr7r1mGBoL3dTP+RG/0n0=
-github.com/mustafaturan/shift v0.1.1 h1:eJj9vHZww4d0UQ8IComgQXuarKaqfvdXvcoiHHU/soQ=
-github.com/mustafaturan/shift v0.1.1/go.mod h1:+Zd+NME5xX6szLCM1qFjRkDr7r1mGBoL3dTP+RG/0n0=
-github.com/mustafaturan/shift v0.2.0 h1:3jzzom1b0ZmuExnkWwJmn6X/fV8VDxrXQDktU1nd/m0=
-github.com/mustafaturan/shift v0.2.0/go.mod h1:+Zd+NME5xX6szLCM1qFjRkDr7r1mGBoL3dTP+RG/0n0=
+github.com/mustafaturan/shift v0.3.2 h1:V69eNE0Jvf9Gnk3wSmDdZ++X3yx5bRTr0tqh6N9qBfI=
+github.com/mustafaturan/shift v0.3.2/go.mod h1:+Zd+NME5xX6szLCM1qFjRkDr7r1mGBoL3dTP+RG/0n0=
 github.com/pkg/errors v0.9.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
