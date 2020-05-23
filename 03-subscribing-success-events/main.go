@@ -10,23 +10,27 @@ import (
 )
 
 func failureHandler(name string) shift.OnFailure {
-	return func(state shift.State, err error) {
-		log.Printf("operation failed(%s) with error: %s, on state: %s", name, err, state)
+	return func(ctx context.Context, err error) {
+		state := ctx.Value(shift.CtxState).(shift.State)
+		stats := ctx.Value(shift.CtxStats).(shift.Stats)
+		log.Printf("operation failed(%s) with error: %s, on state: %s with stats %+v", name, err, state, stats)
 	}
 }
 
 func successHandler(name string) shift.OnSuccess {
-	return func(res interface{}) {
-		log.Printf("operation succeeded for %s and response is %+v", name, res)
+	return func(ctx context.Context, res interface{}) {
+		state := ctx.Value(shift.CtxState).(shift.State)
+		stats := ctx.Value(shift.CtxStats).(shift.Stats)
+		log.Printf("operation succeeded(%s) with error: %s, on state: %s with stats %+v", name, res, state, stats)
 	}
 }
 
 func main() {
-	cb, err := shift.NewCircuitBreaker(
+	cb, err := shift.New(
 		"timeout-test",
 		shift.WithInvocationTimeout(5*time.Second),
-		shift.WithOnFailureHandlers(failureHandler("http-client")),
-		shift.WithOnSuccessHandlers(successHandler("http-client")),
+		shift.WithFailureHandlers(shift.StateClose, failureHandler("http-client")),
+		shift.WithSuccessHandlers(shift.StateClose, successHandler("http-client")),
 	)
 	if err != nil {
 		panic(err)

@@ -8,39 +8,39 @@ import (
 	"time"
 
 	"github.com/mustafaturan/shift"
-	"github.com/mustafaturan/shift/restrictors"
+	"github.com/mustafaturan/shift/restrictor"
 )
 
 func failureCounter(counter *int32) shift.OnFailure {
-	return func(_ shift.State, _ error) {
+	return func(context.Context, error) {
 		atomic.AddInt32(counter, 1)
 	}
 }
 
 func failurePrinter() shift.OnFailure {
-	return func(_ shift.State, err error) {
+	return func(_ context.Context, err error) {
 		log.Printf("Failed with %s", err)
 	}
 }
 
-func successHandler(counter *int32) shift.OnSuccess {
-	return func(_ interface{}) {
+func successCounter(counter *int32) shift.OnSuccess {
+	return func(_ context.Context, _ interface{}) {
 		atomic.AddInt32(counter, 1)
 	}
 }
 
 func main() {
-	restrictor, err := restrictors.NewConcurrentRunRestrictor("threshold-checker", 1)
+	restrictor, err := restrictor.NewConcurrentRunRestrictor("threshold-checker", 1)
 	if err != nil {
 		panic(err)
 	}
 	var failureCount, successCount int32
-	cb, err := shift.NewCircuitBreaker(
+	cb, err := shift.New(
 		"timeout-test",
 		shift.WithInvocationTimeout(2*time.Second),
 		shift.WithRestrictors(restrictor),
-		shift.WithOnFailureHandlers(failureCounter(&failureCount), failurePrinter()),
-		shift.WithOnSuccessHandlers(successHandler(&successCount)),
+		shift.WithFailureHandlers(shift.StateClose, failureCounter(&failureCount), failurePrinter()),
+		shift.WithSuccessHandlers(shift.StateClose, successCounter(&successCount)),
 	)
 	if err != nil {
 		panic(err)
@@ -68,7 +68,7 @@ func download(url string) shift.Operate {
 	}
 }
 
-func downloadAndPrint(cb *shift.CircuitBreaker, url string) {
+func downloadAndPrint(cb *shift.Shift, url string) {
 	ctx := context.Background()
 	res, err := cb.Run(ctx, download(url))
 	if err != nil {

@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	cb, err := shift.NewCircuitBreaker(
+	cb, err := shift.New(
 		"timeout-test",
 		shift.WithInvocationTimeout(10*time.Millisecond),
 	)

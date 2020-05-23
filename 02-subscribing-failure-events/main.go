@@ -10,16 +10,19 @@ import (
 )
 
 func failureHandler(name string) shift.OnFailure {
-	return func(state shift.State, err error) {
-		log.Printf("operation failed(%s) with error: %s, on state: %s", name, err, state)
+	return func(ctx context.Context, err error) {
+		state := ctx.Value(shift.CtxState).(shift.State)
+		stats := ctx.Value(shift.CtxStats).(shift.Stats)
+		log.Printf("operation failed(%s) with error: %s, on state: %s with stats %+v", name, err, state, stats)
 	}
 }
 
 func main() {
-	cb, err := shift.NewCircuitBreaker(
+	cb, err := shift.New(
 		"timeout-test",
 		shift.WithInvocationTimeout(10*time.Millisecond),
-		shift.WithOnFailureHandlers(failureHandler("http-client")),
+		shift.WithFailureHandlers(shift.StateClose, failureHandler("http-client")),
+		shift.WithFailureHandlers(shift.StateHalfOpen, failureHandler("http-client")),
 	)
 	if err != nil {
 		panic(err)
