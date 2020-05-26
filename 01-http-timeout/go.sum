@@ -1,7 +1,7 @@
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/golang/mock v1.4.3/go.mod h1:UOMv5ysSaYNkG+OFQykRIcU/QvvxJf3p21QfJ2Bt3cw=
-github.com/mustafaturan/shift v1.0.0-alpha h1:9LxX6P+3NeTiPV5H5N1P0olfge/af+6hBZkQ8lxZ85c=
-github.com/mustafaturan/shift v1.0.0-alpha/go.mod h1:hEht2p7aRY3qlAHDsTizRulDoZGbynMlcRuGD0HvOnQ=
+github.com/mustafaturan/shift v1.0.0-beta h1:jJnnLZPyKsL3ZV0hiUL/ExwVCe90jAQUFiDsy7a9vKk=
+github.com/mustafaturan/shift v1.0.0-beta/go.mod h1:hEht2p7aRY3qlAHDsTizRulDoZGbynMlcRuGD0HvOnQ=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/testify v1.5.1/go.mod h1:5W2xD1RspED5o8YsWQXVCued0rvSQ+mT+I5cxcmMvtA=

@@ -2,4 +2,4 @@ module github.com/mustafaturan/shift-examples/subscribing-failure-events
 
 go 1.14
 
-require github.com/mustafaturan/shift v1.0.0-alpha // indirect
+require github.com/mustafaturan/shift v1.0.0-beta // indirect
